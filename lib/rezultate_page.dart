@@ -10,6 +10,9 @@ class RezultatePage extends StatefulWidget {
 class _RezultatePageState extends State<RezultatePage> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(title: Text("Rezultate Page")),
+      body: const Column(children: [Text("data")],)
+    );
   }
 }

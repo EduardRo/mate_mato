@@ -10,6 +10,7 @@ class AbonamentePage extends StatefulWidget {
 class _AbonamentePageState extends State<AbonamentePage> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(appBar: AppBar(title: Text("Abonamente Page"),),
+    body: Center(child: Text("Abonamente Page", style: TextStyle(fontSize: 24))));
   }
 }
