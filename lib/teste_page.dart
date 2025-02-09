@@ -75,13 +75,27 @@ class TestePage extends StatelessWidget {
               itemBuilder: (context, index) {
                 final clasa = clases[index];
                 return Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16),
+                  padding: const EdgeInsets.symmetric(vertical: 1.0, horizontal: 10),
+                  // 2px space between buttons
+                  
                   child: ElevatedButton(
+                    key: Key(clasa.codclasa),
+                    style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.blue, // Blue background
+                            foregroundColor: Colors.white, // White text
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.zero, // Right-angled corners
+                              side: const BorderSide(color: Colors.white, width: 2), // White border
+                            ),
+                          ),
                     onPressed: () {
                       // Navigate to the route '/teste/{codclasa}'
                       Navigator.pushNamed(context, '/teste/${clasa.codclasa}');
                     },
-                    child: Text('${clasa.codclasa} - ${clasa.denumireclasa}'),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: SizedBox(height: 80,child: Text('${clasa.codclasa} - ${clasa.denumireclasa}', style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),),
+                    ),
                   ),
                 );
               },
