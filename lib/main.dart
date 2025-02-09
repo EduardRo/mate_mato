@@ -5,6 +5,7 @@ import 'teorie_page.dart';
 import 'abonamente_page.dart';
 import 'rezultate_page.dart';
 import 'despre_page.dart';
+import 'test_materii_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,7 +22,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      initialRoute: '/', // Default page
+      initialRoute: '/',
+      // Static routes for non-dynamic pages.
       routes: {
         '/': (context) => const MainScreen(),
         '/teste': (context) => const TestePage(),
@@ -29,6 +31,28 @@ class MyApp extends StatelessWidget {
         '/abonament': (context) => const AbonamentePage(),
         '/rezultate': (context) => const RezultatePage(),
         '/despre': (context) => const DesprePage(),
+      },
+      // Dynamic route handler for routes like '/teste/<codclasa>'
+      onGenerateRoute: (settings) {
+        final uri = Uri.parse(settings.name!);
+
+        // Check if the path matches /teste/{codclasa}
+        if (uri.pathSegments.length == 2 && uri.pathSegments.first == 'teste') {
+          final codclasa = uri.pathSegments[1];
+          return MaterialPageRoute(
+            builder: (context) => TestMateriiPage(codclasa: codclasa),
+            settings: settings,
+          );
+        }
+
+        // Optionally, return a "Page Not Found" screen for unknown routes.
+        return MaterialPageRoute(
+          builder: (context) => Scaffold(
+            appBar: AppBar(title: const Text('Page Not Found')),
+            body: const Center(child: Text('Page Not Found')),
+          ),
+          settings: settings,
+        );
       },
     );
   }
@@ -38,7 +62,7 @@ class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
 
   void _navigateToPage(BuildContext context, String route) {
-    Navigator.pop(context); // Close drawer
+    Navigator.pop(context); // Close the drawer
     Navigator.pushNamed(context, route);
   }
 
@@ -51,9 +75,7 @@ class MainScreen extends StatelessWidget {
           padding: EdgeInsets.zero,
           children: [
             DrawerHeader(
-              decoration: const BoxDecoration(
-                color: Colors.deepPurple,
-              ),
+              decoration: const BoxDecoration(color: Colors.deepPurple),
               child: const Text(
                 'Menu',
                 style: TextStyle(color: Colors.white, fontSize: 24),
@@ -68,7 +90,7 @@ class MainScreen extends StatelessWidget {
           ],
         ),
       ),
-      body: const HomePage(), // Default Page
+      body: const HomePage(), // Default page content
     );
   }
 
