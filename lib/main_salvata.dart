@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'home_page.dart';
-import 'teorie_materii_page.dart';
 import 'teste_page.dart';
 import 'teorie_page.dart';
 import 'abonamente_page.dart';
@@ -50,7 +49,7 @@ class MyApp extends StatelessWidget {
         if (uri.pathSegments.length == 2 && uri.pathSegments.first == 'teorie') {
           final codclasa = uri.pathSegments[1];
           return MaterialPageRoute(
-            builder: (context) => TeorieMateriiPage(codclasa: codclasa),
+            builder: (context) => TestMateriiPage(codclasa: codclasa),
             settings: settings,
           );
         }

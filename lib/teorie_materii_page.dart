@@ -3,16 +3,16 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'teste_test_page.dart';
 
-class TestMateriiPage extends StatefulWidget {
+class TeorieMateriiPage extends StatefulWidget {
   final String codclasa;
 
-  const TestMateriiPage({super.key, required this.codclasa});
+  const TeorieMateriiPage({super.key, required this.codclasa});
 
   @override
-  TestMateriiPageState createState() => TestMateriiPageState();
+  TeorieMateriiPageState createState() => TeorieMateriiPageState();
 }
 
-class TestMateriiPageState extends State<TestMateriiPage> {
+class TeorieMateriiPageState extends State<TeorieMateriiPage> {
   List series = [];
   bool isLoading = true;
 
@@ -38,7 +38,7 @@ class TestMateriiPageState extends State<TestMateriiPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Select Series - Clasa ${widget.codclasa}')),
+      appBar: AppBar(title: Text('Teorie - Select Series  - Clasa ${widget.codclasa}')),
       body: isLoading
           ? const Center(child: CircularProgressIndicator())
           : Padding(
